@@ -1,8 +1,8 @@
-#**Behavioral Cloning** 
+# **Behavioral Cloning** 
 
-##Convolutional Neural Network with Keras/TensorFlow
+## Convolutional Neural Network with Keras/TensorFlow
 
-###Join me on this exciting journey to build, train and validate a new deep neural network to clone driving behavior. The model outputs a steering angle to an autonomous vehicle! Thanks to Udacity Self-driving Car Nanodegree for provide me the basic skills set to get there!
+### Join me on this exciting journey to build, train and validate a new deep neural network to clone driving behavior. The model outputs a steering angle to an autonomous vehicle! Thanks to Udacity Self-driving Car Nanodegree for provide me the basic skills set to get there!
 
 #### A simulator where you can steer a car around a track for data collection has been provided by Udacity. I have used image data and steering angles to train the neural network and then used the model to drive the car autonomously around the track.
 
@@ -48,9 +48,9 @@ The goals / steps of this project are the following:
 
 
 ---
-##Files Submitted & Code Quality
+## Files Submitted & Code Quality
 
-####1. Submission includes all required files and can be used to run the simulator in autonomous mode
+#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
 * **model.py** containing the script to create and train the model
@@ -64,7 +64,7 @@ My project includes the following files:
 * **rz-behavioral-cloning-track2_fastest.mkv** containing video recording in 'fastest' mode for track 2
 * **writeup_report.md** summarizing the results
 
-####2. Submission includes functional code
+#### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
@@ -73,13 +73,13 @@ If running in 'fastest' mode, you can increase target speed in **drive.py** up t
 * 30MPG, track 1,  model_track1.h5
 * 16MPG, track 2, model_track2b.h5
 
-####3. Submission code is usable and readable
+#### 3. Submission code is usable and readable
 
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+#### 1. An appropriate model architecture has been employed
 
 My model replicates [NVIDIA's End to End Learning for Self-Driving Cars](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf). Check on my code (model.py lines 44-65). The model includes data normalization/zero-mean by 255/-0.5 using a Keras lambda layer, 5x5 and 3x3 convolutions using Keras Convolution2D, RELU layers to introduce nonlinearity, fully connected layers using Keras Flatten and Dense, and over fitting control using Keras Dropout. The loss is compiled using mean square error (mse) and adam optimizer.
 
@@ -96,17 +96,17 @@ Here is the model summary:
 ![alt text][image3]
 
 
-####2. Attempts to reduce overfitting in the model
+#### 2. Attempts to reduce overfitting in the model
 
 The model contains dropout layers in order to reduce overfitting (model.py lines 55, 57, 59). 
 
 The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 108-110). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
-####3. Model parameter tuning
+#### 3. Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 63).
 
-####4. Appropriate training data
+#### 4. Appropriate training data
 
 For track 1 I collected a minimum dataset of images, initially with about 10K but after the initial 95% cutoff of high frequency steering angle = 0, the remaining dataset had 3.3K images only. I did further augmentation and increased it up to 12.5K I was surprised by the achievements with such small dataset. 
 
@@ -127,9 +127,9 @@ Track 2:
 * I did not collected data with the car recovering itself off the road. That could be future data improvements.
 * I did not collected data with the car recovering itself from left to right lane. That could be future data improvements.
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+#### 1. Solution Design Approach
 
 The main strategy was to make sure I had a well balanced and not biased dataset, then apply a well know model architecture such as [NVIDIA's End to End Learning for Self-Driving Cars](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf).
 
@@ -213,7 +213,7 @@ Track 1 Final trimming:
 
 
 
-####2. Training results
+#### 2. Training results
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set (80/20, model.py lines 83-85).
 

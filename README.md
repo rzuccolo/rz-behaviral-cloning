@@ -6,6 +6,9 @@ Deep neural networks and convolutional neural networks applied to clone driving 
 
 Udacity provided a simulator where we can steer a car around a track for data collection. Then we use image data and steering angles to train a neural network and then use the model to drive the car autonomously around the track.
 
+**[Track1 Video Record, 'Fastest' graphical mode](https://vimeo.com/208941014)** Click on this link to watch the video recording in 'fastest' mode for track 1
+**[Track2 Video Record, 'Fastest' graphical mode](https://vimeo.com/208941482)** Click on this link to watch the video recording in 'fastest' mode for track 2
+
 The Project
 ---
 The goals / steps of this project are the following:

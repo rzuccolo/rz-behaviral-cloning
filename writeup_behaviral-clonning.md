@@ -60,8 +60,8 @@ My project includes the following files:
 * **preprocess_util.py** containing preprocessing helpers functions
 * **Playground-Track1.ipynb** containing the preprocessing of driver log before training and training tests for track 1
 * **Playground-JungleTrack2.ipynb** containing the preprocessing of driver log before training and training tests for track 2
-* **rz-behavioral-cloning-track1_fastest.mkv** containing video recording in 'fastest' mode for track 1
-* **rz-behavioral-cloning-track2_fastest.mkv** containing video recording in 'fastest' mode for track 2
+* **[Track1 Video Record, 'Fastest' graphical mode](https://vimeo.com/208941014)** Click on this link to watch the video recording in 'fastest' mode for track 1
+* **[Track2 Video Record, 'Fastest' graphical mode](https://vimeo.com/208941482)** Click on this link to watch the video recording in 'fastest' mode for track 2
 * **writeup_report.md** summarizing the results
 
 #### 2. Submission includes functional code
@@ -70,8 +70,8 @@ Using the Udacity provided simulator and my drive.py file, the car can be driven
 python drive.py model.h5
 ```
 If running in 'fastest' mode, you can increase target speed in **drive.py** up to:
-* 30MPG, track 1,  model_track1.h5
-* 16MPG, track 2, model_track2b.h5
+* 30MPH, track 1,  model_track1.h5
+* 16MPH, track 2, model_track2b.h5
 
 #### 3. Submission code is usable and readable
 
@@ -108,7 +108,7 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 #### 4. Appropriate training data
 
-For track 1 I collected a minimum dataset of images, initially with about 10K but after the initial 95% cutoff of high frequency steering angle = 0, the remaining dataset had 3.3K images only. I did further augmentation and increased it up to 12.5K I was surprised by the achievements with such small dataset. 
+For track 1, I collected a minimum dataset of images, initially with about 10K but after the initial 95% cutoff of high frequency steering angle = 0, the remaining dataset had 3.3K images only. I did further augmentation and increased it up to 12.5K I was surprised by the achievements with such small dataset. 
 
 Track 1:
 * I collected my data from 'fastest' mode from Udacity simulator. Which does not include shadows on the road.
@@ -146,10 +146,10 @@ Track 1 S=0 95% drop:
 Track 1 Left and right steering angle correction:
 
 ![alt text][image6]
+![alt text][image7]
 
 Track 1 100% Image Flipping:
 
-![alt text][image7]
 ![alt text][image8]
 
 Track 1 Horizontal shift:
@@ -217,14 +217,14 @@ Track 1 Final trimming:
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set (80/20, model.py lines 83-85).
 
-For track 1, after some experimentation I noted that for a loss around 0.02 the train and validation in general would start to diverge (overfitting), so I have used a early stop function (model.py lines 26-42).  Trained 5 epochs. The model worked great on 'fastest' mode of the Udacity simulator, even up to 30MPG speed target!! I let it run several complete cycles to be sure it was a stable solution. I have tried the 'fantastic' mode of simulator and it did great as well but presented some 'drunk' drive at high speeds, but it managed to stay on the road all the time, the shadow augmentation really helped (remembering I collected data without shadows) for this mode since the detail shadows projected on the road did not interfered much with the driving experience.
+For track 1, after some experimentation I noted that for a loss around 0.02 the train and validation in general would start to diverge (overfitting), so I have used a early stop function (model.py lines 26-42).  Trained 5 epochs. The model worked great on 'fastest' mode of the Udacity simulator, even up to 30MPH speed target!! I let it run several complete cycles to be sure it was a stable solution. I have tried the 'fantastic' mode of simulator and it did great as well but presented some 'drunk' drive at high speeds, but it managed to stay on the road all the time, the shadow augmentation really helped (remembering I collected data without shadows) for this mode since the detail shadows projected on the road did not interfered much with the driving experience.
 
 Track 1 Loss training history:
 
 ![alt text][image23]
 
 
-For track 2, I noted for a loss around 0.03~0.05 the train and validation in general would start to diverge (overfitting), so I have used a early stop function (model.py lines 26-42). For the final model I had first setup an early stop at 0.05 loss, which barely allowed 2 epochs train. I saved the weights of this model and tested it. It did not work very well getting the car eventually stuck on curves. Then I setup a smaller early stop at 0.04 loss. Trained 3 more epochs. The model worked great on 'fastest' mode of the Udacity simulator, even up to 16MPG speed target which surprised me since the data was recorded at 5MPG and lower!! Stayed on the right lane about 99% of the time!! I let it run several complete cycles to be sure it was a stable solution. But on more detailed graphical modes the car turn to get eventually stuck or changed to the left lane. The relatively small dataset I collected does not include recovering steering from left to the right lane, so the car could not adjust itself back on the right lane and eventually would get stuck somewhere. Then I tried to further improve the training with more epochs, setup a smaller early stop at 0.03 loss and trained 3 more epochs. It did not work, the car was not driving properly even on 'fastest' graphical mode of the Udacity simulator. So my final solution is the second training above described. Future addition of data for off-road and left to right lane recovery would improve the driving experience in higher graphical modes of the simulator. I think for now I got a good solution for the challenge!!
+For track 2, I noted for a loss around 0.03~0.05 the train and validation in general would start to diverge (overfitting), so I have used a early stop function (model.py lines 26-42). For the final model I had first setup an early stop at 0.05 loss, which barely allowed 2 epochs train. I saved the weights of this model and tested it. It did not work very well getting the car eventually stuck on curves. Then I setup a smaller early stop at 0.04 loss. Trained 3 more epochs. The model worked great on 'fastest' mode of the Udacity simulator, even up to 16MPH speed target which surprised me since the data was recorded at 5MPH and lower!! Stayed on the right lane about 99% of the time!! I let it run several complete cycles to be sure it was a stable solution. But on more detailed graphical modes the car turn to get eventually stuck or changed to the left lane. The relatively small dataset I collected does not include recovering steering from left to the right lane, so the car could not adjust itself back on the right lane and eventually would get stuck somewhere. Then I tried to further improve the training with more epochs, setup a smaller early stop at 0.03 loss and trained 3 more epochs. It did not work, the car was not driving properly even on 'fastest' graphical mode of the Udacity simulator. So my final solution is the second training above described. Future addition of data for off-road and left to right lane recovery would improve the driving experience in higher graphical modes of the simulator. I strongly believe that a better dataset recorded at the right range of speed (I did it at too slow MPH) will genarate better driving cloning, but for now I got a good solution for the challenge!!
 
 Track 1 Loss training history:
 
@@ -233,7 +233,7 @@ Track 1 Loss training history:
 
 
 # Acknowledgments / References
-* Udacity Self-Driving Car Nanodegree
+* [Udacity Self-Driving Car Nanodegree](https://www.udacity.com/drive)
 * [NVIDIA's End to End Learning for Self-Driving Cars](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf)
 * [Mez Gebre](https://mez.github.io/deep%20learning/2017/02/14/mainsqueeze-the-52-parameter-model-that-drives-in-the-udacity-simulator/)
 * [Vivek Yadav](https://chatbotslife.com/using-augmentation-to-mimic-human-driving-496b569760a9#.z6krjwf9e)
